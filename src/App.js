@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React , { Component } from "react";
+import CoursForm from "./components/courseform"
+import CoursList from "./components/courseList"
 
-function App() {
+class App extends Component{
+  state ={
+    courses :[
+      {name : "html"},
+      {name : "css"},
+      {name : "jQuery"}
+
+    ],
+    current : ""
+    }
+
+
+    // update value
+    updateCourse =(e) =>{
+      console.log(e.target.value)
+    }
+
+    // add course
+  addCours =(e)=>{
+    e.preventDefault()
+    console.log('courses add')
+  }
+
+  render(){
+    const {courses} =this.state
+    const courseList =courses.map((couurs, index) =>{
+      return < CoursList detalis={couurs} key={index}/>
+    })
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className="App">
+      <h2>add courses</h2>
+      < CoursForm updateCours ={this.updateCourse} addCours={this.addCours} />
+     <ul> {courseList} </ul>      
+    </section>
   );
+}
 }
 
 export default App;
