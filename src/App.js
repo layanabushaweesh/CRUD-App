@@ -37,7 +37,19 @@ class App extends Component{
     })
 
   }
+  // edite course
 
+editeCourse =(index,value)=>{
+  let courses=this.state.courses
+  let course =courses[index]
+  course['name'] = value;
+  this.setState({
+    courses
+  })
+   
+  
+
+}
   // delete courses :p
   deleteCourse =(index)=>{
  let courses = this.state.courses;
@@ -53,7 +65,7 @@ class App extends Component{
   render(){
     const {courses} =this.state
     const courseList =courses.map((couurs, index) =>{
-      return < CoursList  deleteCourse={this.deleteCourse}  index={index} detalis={couurs} key={index}/>
+      return < CoursList  deleteCourse={this.deleteCourse}  index={index} detalis={couurs} key={index}  editeCourse={this.editeCourse}/>
     })
   return (
     <section className="App">
